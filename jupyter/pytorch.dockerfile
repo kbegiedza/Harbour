@@ -17,6 +17,7 @@ RUN apt update -q && apt install -yq --no-install-recommends \
 USER $NB_USER
 
 RUN python3 -m pip install --quiet --no-cache-dir \
+    ipywidgets==7.6.3 \
     torch==1.8.0+cu111 \
     torchvision==0.9.0+cu111 \
     torchaudio==0.8.0 \
