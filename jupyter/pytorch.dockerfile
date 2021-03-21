@@ -9,16 +9,19 @@ ENV LD_LIBRARY_PATH /usr/local/nvidia/lib:/usr/local/nvidia/lib64ive
 USER root
 
 RUN apt update -q && apt install -yq --no-install-recommends \
-    apt-transport-https \
     gcc \
-    python3-opencv
+    libc-dev \
+    python3-opencv \
+    build-essential \
+    apt-transport-https
 
 USER $NB_USER
 
 RUN python3 -m pip install --quiet --no-cache-dir \
+    pycocotools \
     opencv-python \
     ipywidgets==7.6.3 \
-    torch==1.8.0+cu111 \
-    torchvision==0.9.0+cu111 \
-    torchaudio==0.8.0 \
+    torch==1.7.1+cu110 \
+    torchvision==0.8.2+cu110 \
+    torchaudio==0.7.2 \
     -f https://download.pytorch.org/whl/torch_stable.html
