@@ -9,7 +9,9 @@ ENV LD_LIBRARY_PATH /usr/local/nvidia/lib:/usr/local/nvidia/lib64ive
 USER root
 
 RUN apt update -q && apt install -yq --no-install-recommends \
+    zip \
     gcc \
+    unzip \
     libc-dev \
     python3-opencv \
     build-essential \
