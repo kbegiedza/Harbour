@@ -1,7 +1,6 @@
-ARG OS
 ARG VERSION
 
-FROM mcr.microsoft.com/dotnet/sdk:${VERSION}-${OS}
+FROM mcr.microsoft.com/vscode/devcontainers/dotnet:${VERSION}
 
 RUN apt update && \
     apt upgrade -y && \
