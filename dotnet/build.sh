@@ -1,5 +1,5 @@
 # OS="buster-slim"
-VERSION="5.0"
+VERSION="6.0"
 REPO="ursanon/dotnet"
 
 # SDK
