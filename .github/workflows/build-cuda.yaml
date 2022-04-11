@@ -70,9 +70,7 @@ jobs:
           file: cuda/cuda-sdk.Dockerfile
           context: cuda
           push: ${{ github.event_name != 'pull_request' }}
-          tags: |
-            ${{ steps.meta.outputs.tags }}
-            ${{ env.REGISTRY }}/${{ env.SDK_IMAGE_NAME }}:${{ env.CUDA_VERSION }}-sdk
+          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
             OS_VERSION=${{ env.OS_VERSION }}
