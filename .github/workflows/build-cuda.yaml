@@ -13,8 +13,7 @@ env:
   OS_VERSION: ${{ github.event.inputs.os_version }}
   CUDA_VERSION: ${{ github.event.inputs.cuda_version }}
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository_owner }}
-  SDK_IMAGE_NAME: ${{ env.IMAGE_NAME }}/cuda
+  SDK_IMAGE_NAME: ${{ github.repository_owner }}/cuda
 
 jobs:
   build-sdk:
