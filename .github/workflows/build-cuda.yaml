@@ -14,7 +14,7 @@ env:
   CUDA_VERSION: ${{ github.event.inputs.cuda_version }}
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository_owner }}
-  SDK_IMAGE_NAME: "${env.IMAGE_NAME}/cuda:${env.CUDA_VERSION}-sdk"
+  SDK_IMAGE_NAME: "${env.IMAGE_NAME}/cuda"
 
 jobs:
   build-sdk:
@@ -69,7 +69,8 @@ jobs:
           file: cuda-sdk.Dockerfile
           context: cuda
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: |
+            ${env.CUDA_VERSION}-sdk
           labels: ${{ steps.meta.outputs.labels }}
 
       # Sign the resulting Docker image digest except on PRs.
