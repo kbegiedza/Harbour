@@ -70,7 +70,9 @@ jobs:
           file: cuda/cuda-sdk.Dockerfile
           context: cuda
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: |
+            ${{ steps.meta.outputs.tags }}
+            ${{ env.REGISTRY }}/${{ env.SDK_IMAGE_NAME }}:${{ env.CUDA_VERSION }}-sdk
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
             OS_VERSION=${{ env.OS_VERSION }}
@@ -87,4 +89,4 @@ jobs:
           COSIGN_EXPERIMENTAL: "true"
         # This step uses the identity token to provision an ephemeral certificate
         # against the sigstore community Fulcio instance.
-        run: cosign sign ${{ env.REGISTRY }}/${{ env.SDK_IMAGE_NAME }}@${{ steps.build-and-push.outputs.digest }}
+        run: cosign sign ${{ env.REGISTRY }}/${{ env.SDK_IMAGE_NAME }}@${{ steps.build-and-push.outputs.imageid }}
