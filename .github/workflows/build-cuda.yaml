@@ -65,11 +65,14 @@ jobs:
         id: build-and-push
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
-          file: cuda-sdk.Dockerfile
+          file: cuda/cuda-sdk.Dockerfile
           context: cuda
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ env.REGISTRY }}/${{ env.SDK_IMAGE_NAME }}:${{ env.CUDA_VERSION }}-sdk
           labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            OS_VERSION=${{ env.OS_VERSION }}
+            CUDA_VERSION=${{ env.CUDA_VERSION }}
 
       # Sign the resulting Docker image digest except on PRs.
       # This will only write to the public Rekor transparency log when the Docker
