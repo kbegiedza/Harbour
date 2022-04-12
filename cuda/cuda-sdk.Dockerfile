@@ -9,7 +9,7 @@ RUN apt-get update \
     && export DEBIAN_FRONTEND=noninteractive \
     ## Install packages
     && apt-get -y install --no-install-recommends \
-    curl ca-certificates \
+    git curl ca-certificates \
     build-essential cmake cppcheck valgrind clang lldb llvm gdb \
     ## Post installation clean-up
     && apt-get autoremove -y \
