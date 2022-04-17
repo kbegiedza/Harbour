@@ -18,7 +18,7 @@ RUN apt-get update \
     && tar -xzf /tmp/cmake-3.23.1.tar.gz -C /tmp \
     && /bin/bash /tmp/cmake-3.23.1/bootstrap \
     && make -j$(nproc) && make install \
-    && rm /tmp/cmake-3.23.1 \
+    && rm -r /tmp/cmake-3.23.1.tar.gz /tmp/cmake-3.23.1 \
     ## Post installation clean-up
     && apt-get autoremove -y \
     && apt-get clean -y \
