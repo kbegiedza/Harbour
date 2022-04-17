@@ -9,8 +9,16 @@ RUN apt-get update \
     && export DEBIAN_FRONTEND=noninteractive \
     ## Install packages
     && apt-get -y install --no-install-recommends \
-    git curl ca-certificates \
-    build-essential cmake cppcheck valgrind clang lldb llvm gdb \
+    git unzip wget curl \
+    ca-certificates build-essential libtool libssl-dev autoconf \
+    cppcheck valgrind clang lldb llvm gdb \
+    ## Install cmake 3.23.1
+    && mkdir -p /tmp/cmake \
+    && curl https://cmake.org/files/v3.23/cmake-3.23.1.tar.gz -o /tmp/cmake-3.23.1.tar.gz \
+    && tar -xzf /tmp/cmake-3.23.1.tar.gz -C /tmp \
+    && /bin/bash /tmp/cmake-3.23.1/bootstrap \
+    && make -j$(nproc) && make install \
+    && rm /tmp/cmake-3.23.1 \
     ## Post installation clean-up
     && apt-get autoremove -y \
     && apt-get clean -y \
